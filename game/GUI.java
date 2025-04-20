@@ -31,7 +31,7 @@ public class GUI extends JFrame implements ActionListener {
 
 	private void initBackgroundMusic() {
 		try {
-			File musicFile = new File("E:\\GameOAnQuan\\images\\nhactrochoi.wav");
+			File musicFile = new File("E:\\GameOAnQuan\\images\\amnhac.wav");
 			AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicFile);
 			backgroundMusic = AudioSystem.getClip();
 			backgroundMusic.open(audioInput);
@@ -56,22 +56,6 @@ public class GUI extends JFrame implements ActionListener {
 			}
 		}
 	}
-
-	// void init() {
-	// setTitle("Ô ăn quan 3.0");
-	// setResizable(false);
-	// addMenu();
-	// ImageIcon icon = new
-	// ImageIcon("E:\\btlttnt\\O-an-quan\\src\\images\\stone.jpg");
-	// setIconImage(icon.getImage());
-	// setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	// mainGame = new MainGame();
-	// add(mainGame);
-	// resize();
-
-	// // Hiển thị hộp thoại chọn chế độ chơi khi khởi động trò chơi
-	// showGameModeDialog();
-	// }
 
 	void init() {
 		setTitle("Ô ăn quan 3.0");
@@ -104,9 +88,9 @@ public class GUI extends JFrame implements ActionListener {
 
 		// Tạo panel chứa các nút
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(7, 1, 10, 10)); // 6hàng, 1 cột
+		buttonPanel.setLayout(new GridLayout(7, 1, 10, 10)); // 7 hàng, 1 cột
 
-		// Nút chơi
+		// Nút chơi với người
 		JButton humanButton = new JButton("Chơi với người");
 		humanButton.addActionListener(e -> {
 			mainGame.setPlayingWithAI(false);
@@ -114,6 +98,7 @@ public class GUI extends JFrame implements ActionListener {
 		});
 		buttonPanel.add(humanButton);
 
+		// Nút chơi với máy
 		JButton aiButton = new JButton("Chơi với máy");
 		aiButton.addActionListener(e -> {
 			mainGame.setPlayingWithAI(true);
@@ -121,9 +106,15 @@ public class GUI extends JFrame implements ActionListener {
 		});
 		buttonPanel.add(aiButton);
 
+		// Nút mức độ
 		JButton LevelButton = new JButton("Mức độ");
 		LevelButton.addActionListener(e -> showMucDoDialog());
 		buttonPanel.add(LevelButton);
+
+		// Nút âm thanh (mới thêm)
+		JButton soundButton = new JButton("Âm thanh");
+		soundButton.addActionListener(e -> showAmThanhDialog());
+		buttonPanel.add(soundButton);
 
 		// Nút cài đặt
 		JButton settingsButton = new JButton("Cài đặt");
@@ -177,15 +168,6 @@ public class GUI extends JFrame implements ActionListener {
 	}
 
 	@Override
-	// public void actionPerformed(ActionEvent e) {
-	// if (e.getSource() == miThoat) {
-	// System.exit(0);
-	// }
-	// if (e.getSource() == miThongTin) {
-	// showHang();
-	// }
-	// }
-
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == miThoat) {
 			System.exit(0);
@@ -197,52 +179,6 @@ public class GUI extends JFrame implements ActionListener {
 			toggleMusic(); // Xử lý bật/tắt nhạc
 		}
 	}
-
-	// void showCaiDatDialog() {
-	// JDialog setupDialog = new JDialog(this, "Cài đặt", true);
-	// final int stWidth = 400, stHeight = 220;
-	// setupDialog.setSize(stWidth, stHeight);
-	// setupDialog.setLayout(null);
-	// setupDialog.setLocationRelativeTo(this);
-
-	// JLabel lbSpeed = new JLabel("Tốc độ di chuyển");
-	// lbSpeed.setBounds(20, 20, 200, 30);
-	// lbSpeed.setFont(fontMenu);
-	// setupDialog.add(lbSpeed);
-
-	// JSpinner spSpeed = new JSpinner(new SpinnerNumberModel(mainGame.speed, 1, 4,
-	// 1));
-	// spSpeed.setBounds(300, 20, 50, 30);
-	// setupDialog.add(spSpeed);
-
-	// JLabel lbSize = new JLabel("Độ thu phóng");
-	// lbSize.setBounds(20, 70, 200, 30);
-	// lbSize.setFont(fontMenu);
-	// setupDialog.add(lbSize);
-
-	// JSpinner spSize = new JSpinner(new SpinnerNumberModel(multiple / 20, 1, 4,
-	// 1));
-	// spSize.setBounds(300, 70, 50, 30);
-	// setupDialog.add(spSize);
-
-	// JButton dongY = new JButton("Chấp nhận");
-	// dongY.setBounds(55, 130, 130, 35);
-	// dongY.setFont(fontMenu);
-	// dongY.addActionListener(e -> {
-	// mainGame.speed = (int) spSpeed.getValue();
-	// multiple = (int) spSize.getValue() * 20;
-	// resize();
-	// setupDialog.dispose();
-	// });
-	// JButton huyBo = new JButton("Huỷ bỏ");
-	// huyBo.setBounds(200, 130, 100, 35);
-	// huyBo.setFont(fontMenu);
-	// huyBo.addActionListener(e -> setupDialog.dispose());
-	// setupDialog.add(dongY);
-	// setupDialog.add(huyBo);
-
-	// setupDialog.setVisible(true);
-	// }
 
 	void showCaiDatDialog() {
 		JDialog setupDialog = new JDialog(this, "Cài đặt", true);
@@ -269,16 +205,6 @@ public class GUI extends JFrame implements ActionListener {
 		spSize.setBounds(300, 70, 50, 30);
 		setupDialog.add(spSize);
 
-		// Thêm nút bật/tắt nhạc trong cài đặt
-		JButton musicButton = new JButton(isMusicPlaying ? "Tắt nhạc" : "Bật nhạc");
-		musicButton.setBounds(20, 120, 130, 35);
-		musicButton.setFont(fontMenu);
-		musicButton.addActionListener(e -> {
-			toggleMusic();
-			musicButton.setText(isMusicPlaying ? "Tắt nhạc" : "Bật nhạc");
-		});
-		setupDialog.add(musicButton);
-
 		JButton dongY = new JButton("Chấp nhận");
 		dongY.setBounds(55, 170, 130, 35);
 		dongY.setFont(fontMenu);
@@ -296,6 +222,47 @@ public class GUI extends JFrame implements ActionListener {
 		setupDialog.add(huyBo);
 
 		setupDialog.setVisible(true);
+	}
+
+	void showAmThanhDialog() {
+		JDialog soundDialog = new JDialog(this, "Cài đặt Âm thanh", true);
+		soundDialog.setLayout(new GridLayout(3, 1, 10, 10)); // 3 hàng: tiêu đề, 2 nút
+		soundDialog.setSize(300, 200);
+		soundDialog.setLocationRelativeTo(this);
+
+		// Tiêu đề
+		JLabel titleLabel = new JLabel("Cài đặt Âm thanh", SwingConstants.CENTER);
+		titleLabel.setFont(fontMenu);
+		soundDialog.add(titleLabel);
+
+		// Nút bật nhạc
+		JButton turnOnMusicButton = new JButton("Bật nhạc");
+		turnOnMusicButton.setFont(fontMenu);
+		turnOnMusicButton.addActionListener(e -> {
+			if (!isMusicPlaying && backgroundMusic != null) {
+				backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
+				backgroundMusic.start();
+				isMusicPlaying = true;
+				JOptionPane.showMessageDialog(soundDialog, "Nhạc đã được bật!", "Thông báo",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		soundDialog.add(turnOnMusicButton);
+
+		// Nút tắt nhạc
+		JButton turnOffMusicButton = new JButton("Tắt nhạc");
+		turnOffMusicButton.setFont(fontMenu);
+		turnOffMusicButton.addActionListener(e -> {
+			if (isMusicPlaying && backgroundMusic != null) {
+				backgroundMusic.stop();
+				isMusicPlaying = false;
+				JOptionPane.showMessageDialog(soundDialog, "Nhạc đã được tắt!", "Thông báo",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		soundDialog.add(turnOffMusicButton);
+
+		soundDialog.setVisible(true);
 	}
 
 	void showMucDoDialog() {

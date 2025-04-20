@@ -26,9 +26,14 @@ public class Stone extends JLabel {
 			smallStoneIcon = new ImageIcon("E:\\GameOAnQuan\\images\\stone-r.png"); // Đường dẫn ảnh nhỏ
 		}
 		if (bigStoneIcon == null) {
-			bigStoneIcon = new ImageIcon("E:\\GameOAnQuan\\images\\e.png"); // Đường dẫn ảnh lớn
+			bigStoneIcon = new ImageIcon("E:\\GameOAnQuan\\images\\morestone1.png"); // Đường dẫn ảnh lớn
 		}
 
+		// if (pos == 5 || pos == 11) {
+		// setIcon(bigStoneIcon); // Hiển thị ảnh lớn cho ô Quan
+		// } else {
+		// setIcon(smallStoneIcon); // Hiển thị ảnh nhỏ cho các ô khác
+		// }
 		setIcon(smallStoneIcon);
 		resize();
 	}
