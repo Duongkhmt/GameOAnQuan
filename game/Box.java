@@ -187,6 +187,11 @@ public class Box implements ActionListener {
 		return num;
 	}
 
+	public void setNum(int n) {
+		num = n;
+		numLabel.setText(Integer.toString(num));
+	}
+
 	void setColor(Color c) {
 		boxBtn.setForeground(c);
 	}

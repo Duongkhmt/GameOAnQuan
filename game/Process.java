@@ -183,47 +183,6 @@ public class Process {
 			spread(mainGame.getCurTeam());
 		}
 	}
-	// void nextTurn() {
-	// if (total(mainGame.getCurTeam()) == 0) {
-	// System.out.println(
-	// "No stones left in the normal boxes for team " + mainGame.getCurTeam() +
-	// ". Spreading stones...");
-	// spread(mainGame.getCurTeam());
-
-	// // 🟢 Sau khi rải quân xong, kiểm tra lại total
-	// if (total(mainGame.getCurTeam()) > 0) {
-	// System.out.println("Rải xong, tiếp tục chơi...");
-	// return; // Dừng lại để người chơi chọn ô để đi tiếp
-	// }
-	// }
-
-	// int result = check(mainGame.getCurTeam());
-
-	// System.out.println("Total stones for team " + mainGame.getCurTeam() + ": " +
-	// total(mainGame.getCurTeam()));
-	// System.out.println("Stones in score box: " +
-	// scBox[mainGame.getCurTeam()].getNum());
-
-	// if (result == -1) {
-	// int winTeam = (scBox[0].getNum() > scBox[1].getNum()) ? 0 : 1;
-	// victory(winTeam);
-	// } else if (result == 0) {
-	// victory(1 - mainGame.getCurTeam());
-	// } else if (result == 1) {
-	// spread(mainGame.getCurTeam());
-
-	// // Sau khi rải, nếu có quân thì chờ người chơi chơi tiếp
-	// if (total(mainGame.getCurTeam()) > 0) {
-	// System.out.println("Rải xong đủ quân, tiếp tục lượt chơi.");
-	// return;
-	// } else {
-	// // Không đủ quân -> thua
-	// victory(1 - mainGame.getCurTeam());
-	// }
-	// } else {
-	// mainGame.nextTurn(); // Đổi lượt bình thường
-	// }
-	// }
 
 	void victory(int team) {
 		if (team > -1) {
@@ -257,4 +216,5 @@ public class Process {
 		box[pos].change(1);
 		box[pos].isStone[j] = true;
 	}
+
 }

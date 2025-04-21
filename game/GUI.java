@@ -13,7 +13,7 @@ public class GUI extends JFrame implements ActionListener {
 	public static int multiple = 80;
 	private JMenuBar mb;
 	private JMenu mGame = new JMenu("Trò chơi"),
-			mHelp = new JMenu("Trợ giúp");
+			mHelp = new JMenu("Thông Tin");
 	private JMenuItem miGameMoi = new JMenuItem("Trò chơi mới"), // Đã xóa
 			miThoat = new JMenuItem("Kết thúc"),
 			miThongTin = new JMenuItem("Thông tin");
@@ -31,7 +31,7 @@ public class GUI extends JFrame implements ActionListener {
 
 	private void initBackgroundMusic() {
 		try {
-			File musicFile = new File("E:\\GameOAnQuan\\images\\amnhac.wav");
+			File musicFile = new File("E:\\GameOAnQuan\\images\\nhactrochoi.wav");
 			AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicFile);
 			backgroundMusic = AudioSystem.getClip();
 			backgroundMusic.open(audioInput);
